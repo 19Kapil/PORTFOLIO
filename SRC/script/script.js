@@ -1,50 +1,8 @@
-let menu = document.querySelector('#menu-icon-js');
-let menuicon = document.querySelector('#menu-icon');
-let navbar = document.querySelector('.navbar');
-let navtc = document.querySelector('#nav-tc-js');
-
-menu.onclick = () => {
-	menuicon.classList.toggle('bx-x');
-	navbar.classList.toggle('open');
-	navtc.classList.toggle("nav-touch-close-open");
-}
-
-navtc.onclick = () => {
-	menuicon.classList.toggle('bx-x');
-	navbar.classList.remove('open');
-	navtc.classList.remove('nav-touch-close-open');
-	navtc.classList.remove("nav-tc-z");
-	navtc.classList.remove("nav-LR-TC");
-}
-
-/* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
-var prevScrollpos = window.pageYOffset;
-window.onscroll = function () {
-	var currentScrollPos = window.pageYOffset;
-
-	document.getElementById("header").classList.add('scrolled');
-	if (currentScrollPos === 0) {
-		// console.log("Hello");
-		document.getElementById("header").classList.remove('scrolled');
-	}
-	if (navtc.classList.contains('nav-touch-close-open')) {
-		return;
-	}
-	if (prevScrollpos > currentScrollPos) {
-		document.getElementById("header").style.top = "0";
-	} else {
-		document.getElementById("header").style.top = "-100px";
-	}
-	prevScrollpos = currentScrollPos;
-}
-
-
-const contactSection = document.querySelector('.contact-section');
-const formSection = document.querySelector('.form-section');
-const contactSubmitAfter = document.querySelector('.contact-submit-after');
-const csaOK = document.querySelector('.csa-ok');
-
-
+// DOM Elements
+const menu = document.querySelector('#menu-icon-js');
+const menuicon = document.querySelector('#menu-icon');
+const navbar = document.querySelector('.navbar');
+const navtc = document.querySelector('#nav-tc-js');
 const contactForm = document.querySelector('.contact-form');
 const nameInput = document.getElementById('name');
 const emailInput = document.getElementById('email');
@@ -55,89 +13,112 @@ const contactButton = document.querySelector('.contact-button');
 const contactLoad = document.querySelector('.contact-load');
 const submitText = document.querySelector('.submit-text');
 
-if (csaOK) {
-	csaOK.onclick = () => {
-		contactSubmitAfter.classList.remove('show');
-		formSection.classList.remove('hide');
-		contactSection.classList.remove('csa-cs');
-		contactForm.classList.remove('csa-cf');
-		contactButton.classList.remove('loading');
-		contactLoad.classList.remove('show');
-		submitText.classList.remove('hide');
-		// contactSubmitAfter.classList.add('hide');
-	}
-}
+// Menu Toggle Functionality
+menu.onclick = () => {
+    menuicon.classList.toggle('bx-x');
+    navbar.classList.toggle('open');
+    navtc.classList.toggle("nav-touch-close-open");
+};
 
-// Function to validate the form
+// Close Menu when clicking on navtc
+navtc.onclick = () => {
+    menuicon.classList.toggle('bx-x');
+    navbar.classList.remove('open');
+    navtc.classList.remove('nav-touch-close-open');
+    navtc.classList.remove("nav-tc-z", "nav-LR-TC");
+};
+
+// Handle Scroll Direction and Navbar Visibility
+let prevScrollpos = window.pageYOffset;
+window.onscroll = function () {
+    const currentScrollPos = window.pageYOffset;
+
+    // Add/remove scrolled class to header
+    document.getElementById("header").classList.toggle('scrolled', currentScrollPos > 0);
+
+    // Handle navbar visibility based on scroll direction
+    if (navtc.classList.contains('nav-touch-close-open')) return;
+
+    document.getElementById("header").style.top = (prevScrollpos > currentScrollPos) ? "0" : "-100px";
+    prevScrollpos = currentScrollPos;
+};
+
+// Form Validation Function
 function validateForm(event) {
-	event.preventDefault(); // Prevent the form from submitting
-	let isValid = true;
-	emailIsValid = true;
-	nameIsValid = true;
-	messageIsValid = true;
+    event.preventDefault();
+    let isValid = true;
 
-	// Check if Name field is empty
-	if (nameInput.value.trim() === '') {
-		isValid = false;
-		nameIsValid = false;
-	}
+    // Validate Name field
+    if (nameInput.value.trim() === '') {
+        isValid = false;
+        nameInput.classList.add('invalid');
+    } else {
+        nameInput.classList.remove('invalid');
+    }
 
-	// Check if Email field is empty or not a valid email address
-	if (emailInput.value.trim() === '' || !isValidEmail(emailInput.value)) {
-		isValid = false;
-		if (emailInput.value.trim() !== '' && !isValidEmail(emailInput.value)) {
-			emailIsValid = false;
-		}
-	}
+    // Validate Email field
+    if (emailInput.value.trim() === '' || !isValidEmail(emailInput.value)) {
+        isValid = false;
+        emailInput.classList.add('invalid');
+    } else {
+        emailInput.classList.remove('invalid');
+    }
 
-	// Check if Message field is empty
-	if (messageInput.value.trim() === '') {
-		isValid = false;
-		messageIsValid = false;
-	}
+    // Validate Message field
+    if (messageInput.value.trim() === '') {
+        isValid = false;
+        messageInput.classList.add('invalid');
+    } else {
+        messageInput.classList.remove('invalid');
+    }
 
-	if (!isValid) {
-		// Display the error message
-		errorDiv.classList.add('error-show');
-		emailErrorDiv.classList.remove('error-show');
-		if (nameIsValid && messageIsValid && !emailIsValid) {
-			errorDiv.classList.remove('error-show');
-			emailErrorDiv.classList.add('error-show');
-		}
-	} else {
-		// Form is valid, it can be sumbitted now
-		emailErrorDiv.classList.remove('error-show');
-		errorDiv.classList.remove('error-show');
-		contactButton.classList.add('loading');
-		contactLoad.classList.add('show');
-		submitText.classList.add('hide');
-		setTimeout(function () {
-			sendMail();
-		}, 2000);
-	}
+    // If the form is valid, proceed with submission
+    if (isValid) {
+        handleFormSubmission();
+    } else {
+        errorDiv.classList.add('error-show');
+    }
 }
 
-// Function to validate email format using a regular expression
+// Validate Email using Regular Expression
 function isValidEmail(email) {
-	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	return emailRegex.test(email);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Handle Form Submission (Show Loading, Submit, and Reload)
+function handleFormSubmission() {
+    // Show loading spinner and hide submit text
+    contactButton.classList.add('loading');
+    contactLoad.classList.add('show');
+    submitText.classList.add('hide');
+
+    setTimeout(() => {
+        sendMail(); // Replace with your actual mail-sending function or AJAX request
+
+        // After submission, reset UI and reload the page
+        setTimeout(() => {
+            resetUI();
+            reloadPage();
+        }, 2000);
+    }, 2000);
+}
+
+// Reset UI elements after form submission
+function resetUI() {
+    contactButton.classList.remove('loading');
+    contactLoad.classList.remove('show');
+    submitText.classList.remove('hide');
+}
+
+// Reload the page
+function reloadPage() {
+    setTimeout(() => {
+        location.reload();  // Force page reload
+    }, 1000);  // Delay for 1 second to allow time for the form feedback
 }
 
 // Event listener for form submission
 if (contactForm) {
-	contactForm.addEventListener('submit', validateForm);
-}
-
-
-// After adding the Email Js APi key in the script tag of the contact.html, uncomment this function section
-
-function sendMail() {
-
-	// Remove this section after adding the Email Js APi key in the script tag of the contact.html, uncomment this function section
-	// From this
-	contactSubmitAfter.classList.add('show');
-	formSection.classList.add('hide');
-	contactSection.classList.add('csa-cs');
-	contactForm.classList.add('csa-cf');
-	
+    contactForm.addEventListener('submit', validateForm);
 }

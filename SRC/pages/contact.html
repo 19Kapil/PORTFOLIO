@@ -13,8 +13,6 @@
 </head>
 
 <body>
-
-
     <header class="header" id="header">
         <a href="../../index.html" class="logo"><span class="main-icon"></span><span>Kapil</span></a>
 
@@ -22,10 +20,7 @@
             <a href="../../index.html">Home</a>
             <a href="./skills.html">Skills</a>
             <a href="./education.html">Education</a>
-            <!-- //<a href="./gallery.html">Gallery</a> -->
             <a href="./project.html">Projects</a>
-            <!-- <a href="./hobbies.html">Hobbies</a>
-            <a href="./testimonials.html">Testimonials</a> -->
         </div>
 
         <div class="main">
@@ -51,13 +46,7 @@
                             <div class="info">parazulikapil777@gmail.com</div>
                         </div>
                     </div>
-                    <!-- <div class="cs-item number">
-                        <div class="icon"><i class="fas fa-phone"></i></i></div>
-                        <div class="text">
-                            <div class="placeHolder">Phone</div>
-                            <div class="info">+61 xxxxxxxxx</div>
-                        </div>
-                    </div> -->
+
                     <div class="cs-item address">
                         <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
                         <div class="text">
@@ -66,10 +55,11 @@
                         </div>
                     </div>
                 </div>
+
                 <section class="contact-form">
                     <h1>Contact Me</h1>
                     <div class="border-line"></div>
-                    <!-- <p>Feel free to get in touch with me by filling out the form below.</p> -->
+
                     <div class="contact-submit-after">
                         <div class="box">
                             <i class="fa-solid fa-circle-check csa-icon"></i>
@@ -77,7 +67,7 @@
                             <div class="csa-ok">OK</div>
                         </div>
                     </div>
-                    <form id="contact-form" class="form-section" novalidate>
+                    <form action="https://formspree.io/f/xdkkyagz" method="POST" id="contact-form" class="form-section" novalidate>
                         <div class="form-group name-section">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" required>
@@ -90,50 +80,33 @@
                             <label for="message">Message</label>
                             <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
-                        <div class="error"><i class="fa-solid fa-circle-xmark error-icon"></i>Please fill out all the
-                            fields
-                        </div>
-                        <div class="email-error"><i class="fa-solid fa-circle-xmark error-icon"></i>Email address is not
-                            valid</div>
+                        <div class="error"><i class="fa-solid fa-circle-xmark error-icon"></i>Please fill out all the fields</div>
+                        <div class="email-error"><i class="fa-solid fa-circle-xmark error-icon"></i>Email address is not valid</div>
                         <button type="submit" id="contact-submit" class="contact-button">
                             <div class="contact-load">
                                 <div class="line"></div>
                                 <div class="line"></div>
                                 <div class="line"></div>
                             </div>
-                            <div class="submit-text">
-                                Submit
-                            </div>
+                            <div class="submit-text">Submit</div>
                         </button>
                     </form>
                 </section>
             </div>
         </main>
+
         <footer class="footer">
-            <div class="left">
-                &copy; 2025 • Kapil Parajuli • All Rights Reserved
-            </div>
+            <div class="left">&copy; 2025 • Kapil Parajuli • All Rights Reserved</div>
             <div class="right">
-                
                 <div class="social"><a href="https://www.instagram.com/kapil_parazuli/" target="_blank"><i class="fa-brands fa-instagram"></i></a></div>
                 <div class="social"><a href="https://www.linkedin.com/in/kapil-parajuli-06a755245/" target="_blank"><i class="fa-brands fa-linkedin"></i></a></div>
                 <div class="social"><a href="https://github.com/19Kapil" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+            </div>
         </footer>
     </div>
 
-
-
     <div class="nav-touch-close" id="nav-tc-js"></div>
-
-    <script type="text/javascript" src="../script/script.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
-    </script>
-    <script type="text/javascript">
-        (function () {
-            emailjs.init("Email Js API Key (keep it in .env file or seperately)");
-        })();
-    </script>
-
+    <script type="text/javascript" src="script.js"></script>
 </body>
 
 </html>
