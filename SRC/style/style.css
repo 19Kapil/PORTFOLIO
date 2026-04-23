@@ -25,6 +25,7 @@ body {
 	/* position: relative;
 	top: 150px; */
 	background: var(--bg-color);
+	background-attachment: fixed;
 	color: var(--text-color);
 }
 
