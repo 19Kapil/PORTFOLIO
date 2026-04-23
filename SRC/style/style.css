@@ -11,7 +11,8 @@
 
 :root {
 	/* --bg-color: radial-gradient(circle at 60% 50%, rgba(238,174,202,1) 0%, rgb(127, 172, 224) 100%); */
-	--bg-color: radial-gradient(circle at 70% 50%, rgb(63, 49, 49) 0%, rgb(0, 0, 0) 100%);
+	/*--bg-color: radial-gradient(circle at 70% 50%, rgb(63, 49, 49) 0%, rgb(0, 0, 0) 100%); */
+	--bg-color: radial-gradient(circle at 70% 50%, #ffffff 0%, #eaeaea 100%);
 	--text-color: #efecec;
 	/*--main-color: rgb(237, 5, 5); */
 	--main-color: #1f3a5f;
