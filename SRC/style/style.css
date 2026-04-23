@@ -13,7 +13,8 @@
 	/* --bg-color: radial-gradient(circle at 60% 50%, rgba(238,174,202,1) 0%, rgb(127, 172, 224) 100%); */
 	/*--bg-color: radial-gradient(circle at 70% 50%, rgb(63, 49, 49) 0%, rgb(0, 0, 0) 100%); */
 	--bg-color: linear-gradient(180deg, #ffffff 0%, #f5f5f5 50%, #eaeaea 100%);
-	--text-color: #efecec;
+	/* --text-color: #efecec; */
+	--text-color: #2a2a2a;
 	/*--main-color: rgb(237, 5, 5); */
 	--main-color: #1f3a5f;
 	/* --main-color: hsl(250, 52%, 36%); */
